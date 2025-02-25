@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaur Hybrid Lab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+        }
+
+        h1 {
+            color: #ffcc00;
+        }
+
+        button {
+            background-color: #ff6600;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dinosaur Hybrid Lab 🦖</h1>
+    <p>Just a fun game created by Guilherme Melo.</p>
+
+
+    <label for="dna1">Select DNA 1:</label>
+    <select id="dna1">
+        <option value="T-Rex">T-Rex</option>
+        <option value="Velociraptor">Velociraptor</option>
+        <option value="Spinosaurus">Spinosaurus</option>
+    </select>
+
+    <label for="dna2">Select DNA 2:</label>
+    <select id="dna2">
+        <option value="Shark">Shark</option>
+        <option value="Eagle">Eagle</option>
+        <option value="Snake">Snake</option>
+    </select>
+
+    <button onclick="generateHybrid()">Create Hybrid</button>
+
+    <h2>Hybrid Result:</h2>
+    <p id="result"></p>
+
+    <script>
+        function generateHybrid() {
+            let dna1 = document.getElementById("dna1").value;
+            let dna2 = document.getElementById("dna2").value;
+
+            let hybridName = dna1.substring(0, 3) + dna2.substring(0, 3);
+            let abilities = [
+                "Super Strength", 
+                "Extreme Speed", 
+                "Venomous Bite", 
+                "Regeneration", 
+                "Stealth Mode"
+            ];
+            
+            let randomAbility = abilities[Math.floor(Math.random() * abilities.length)];
+
+            document.getElementById("result").innerHTML = 
+                `You created a **${hybridName}**! It has **${randomAbility}**!`;
+        }
+    </script>
+</body>
+</html>
