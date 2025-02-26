@@ -3,76 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinosaur Hybrid Lab</title>
+    <title>The Hybrid Lab</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
             text-align: center;
-            background-color: #222;
-            color: white;
         }
-
-        h1 {
-            color: #ffcc00;
+        #dinoForm {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
         }
-
-        button {
-            background-color: #ff6600;
-            color: white;
+        input {
+            width: 90%;
             padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
-
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         button:hover {
-            background-color: #ff4500;
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Dinosaur Hybrid Lab 🦖</h1>
-    <p>Just a fun game created by Guilherme Melo.</p>
 
+<h1>Dinosaur AI Lab</h1>
+<div id="dinoForm">
+    <h2>Combine Two Dinosaurs</h2>
+    <input type="text" id="dino1" placeholder="Enter first dinosaur">
+    <input type="text" id="dino2" placeholder="Enter second dinosaur">
+    <button onclick="generateDinosaur()">Create Hybrid</button>
 
-    <label for="dna1">Select DNA 1:</label>
-    <select id="dna1">
-        <option value="T-Rex">T-Rex</option>
-        <option value="Velociraptor">Velociraptor</option>
-        <option value="Spinosaurus">Spinosaurus</option>
-    </select>
+    <div id="result"></div>
+</div>
 
-    <label for="dna2">Select DNA 2:</label>
-    <select id="dna2">
-        <option value="Shark">Shark</option>
-        <option value="Eagle">Eagle</option>
-        <option value="Snake">Snake</option>
-    </select>
+<script>
+    function generateDinosaur() {
+        const dino1 = document.getElementById('dino1').value.trim();
+        const dino2 = document.getElementById('dino2').value.trim();
 
-    <button onclick="generateHybrid()">Create Hybrid</button>
-
-    <h2>Hybrid Result:</h2>
-    <p id="result"></p>
-
-    <script>
-        function generateHybrid() {
-            let dna1 = document.getElementById("dna1").value;
-            let dna2 = document.getElementById("dna2").value;
-
-            let hybridName = dna1.substring(0, 3) + dna2.substring(0, 3);
-            let abilities = [
-                "Super Strength", 
-                "Extreme Speed", 
-                "Venomous Bite", 
-                "Regeneration", 
-                "Stealth Mode"
-            ];
-            
-            let randomAbility = abilities[Math.floor(Math.random() * abilities.length)];
-
-            document.getElementById("result").innerHTML = 
-                `You created a **${hybridName}**! It has **${randomAbility}**!`;
+        if (dino1 === "" || dino2 === "") {
+            document.getElementById('result').innerText = "Please enter two dinosaur names.";
+            return;
         }
-    </script>
+
+        // AI-style logic to generate a unique name
+        let hybridName = (dino1.slice(0, 4) + dino2.slice(-4)).toLowerCase();
+        hybridName = hybridName.charAt(0).toUpperCase() + hybridName.slice(1);
+
+        // Generate random abilities
+        const abilities = [
+            "Incredible speed",
+            "Armor-plated skin",
+            "Venomous bite",
+            "Thermal vision",
+            "Aquatic adaptation",
+            "Stealth camouflage",
+            "Super strength",
+            "Toxic breath",
+            "Electric shock defense",
+            "Regenerative healing"
+        ];
+        const ability1 = abilities[Math.floor(Math.random() * abilities.length)];
+        const ability2 = abilities[Math.floor(Math.random() * abilities.length)];
+
+        document.getElementById('result').innerHTML = `
+            <p><strong>Hybrid Name:</strong> ${hybridName}</p>
+            <p><strong>Special Abilities:</strong> ${ability1}, ${ability2}</p>
+        `;
+    }
+</script>
+
 </body>
 </html>
